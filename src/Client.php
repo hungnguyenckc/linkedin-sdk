@@ -308,6 +308,11 @@ class Client
      */
     public static function responseToArray($response)
     {
+        if ($response->getStatusCode() === 204 && empty($response->getBody()->getContents()))
+        {
+            return ['success' => 1];
+        }
+
         return \GuzzleHttp\json_decode(
             $response->getBody()->getContents(),
             true
