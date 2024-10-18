@@ -17,6 +17,7 @@
 
 namespace LinkedIn;
 
+use GuzzleHttp\Utils;
 use GuzzleHttp\Psr7\Uri;
 use LinkedIn\Http\Method;
 use GuzzleHttp\Psr7\Query;
@@ -598,7 +599,7 @@ class Client
     {
         $options = [];
         if ($method === Method::POST) {
-            $options['body'] = \GuzzleHttp\json_encode($params);
+            $options['body'] = Utils::jsonEncode($params);
         }
         return $options;
     }
